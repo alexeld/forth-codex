@@ -1,0 +1,48 @@
+
+                              ______           __  __  
+                             / ____/___  _____/ /_/ /_ 
+                            / /_  / __ \/ ___/ __/ __ \
+                           / __/ / /_/ / /  / /_/ / / /
+                          /_/    \____/_/   \__/_/ /_/ 
+                          -----------------------------
+                          C      O      D      E      X
+
+
+
+
+
+-- [ C O N T E N T S
+
+  0x00................CHAR TWIDDLES.
+
+
+
+
+--[ CHAR TWIDDLES
+
+Manipulating ASCII chars is straightforward stuff, and it's REALLY straight
+forward in Forth.  I'm sure most Forth systems probably implement these words
+in one way, shape, or form, but I have defined them here for my own use, should
+my Forth of choice not define these words.
+
+For reference, here's some of the ASCII chars:
+
+        +-----+-----+-----+ +-----+-----+-----+ +-----+-----+-----+
+        | dec | hex | chr | | dec | hex | chr | | dec | hex | chr |
+        +-----+-----+-----+ +-----+-----+-----+ +-----+-----+-----+
+        |  48 | 30  |  0  | |  65 |  41 |  A  | |  97 |  60 |  a  |
+        |  49 | 31  |  1  | |  66 |  42 |  B  | |  98 |  61 |  b  |
+        |/////////////////| |/////////////////| |/////////////////|
+        |  57 | 39  |  9  | |  90 |  5A |  Z  | | 122 |  7a |  z  |
+        +-----+-----+-----+ +-----+-----+-----+ +-----+-----+-----+
+
+
+---( Changing case
+
+ASCII letters in the ranges [A-Z] and [a-z] differ between upper and lower-case
+by a single bit (a '1' in the 32-bit col indicates a lower-case char). Swapping
+case is as simple as ORing the 32nd bit with a mask of 32.
+
+    : lowercase ( char -- char )
+        32 OR ;    
+
